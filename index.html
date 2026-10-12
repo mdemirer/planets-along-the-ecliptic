@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planets along the ecliptic</title>
+<meta name="description" content="Printable A3 charts that show when and where Mercury, Venus, Mars, Jupiter and Saturn can be seen, for any year and place.">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div class="masthead-text">
+      <h1>Planets along the ecliptic</h1>
+      <p class="lede">Printable charts that show when and where to look for Mercury, Venus, Mars, Jupiter and Saturn, night by night, for any year and place.</p>
+    </div>
+    <svg class="motif" viewBox="0 0 260 70" aria-hidden="true">
+      <path d="M10 64 A 120 52 0 0 1 250 64" fill="none" stroke="#dfe4ec" stroke-width="14"></path>
+      <path d="M38 52 A 92 38 0 0 1 132 14" fill="none" stroke="#703592" stroke-width="6" stroke-linecap="butt"></path>
+      <path d="M132 14 A 92 38 0 0 1 214 46" fill="none" stroke="#4a90e8" stroke-width="6"></path>
+      <circle cx="132" cy="14" r="6" fill="#c7a8d6" stroke="#54286d" stroke-width="1.2"></circle>
+    </svg>
+  </header>
+
+  <main class="layout">
+    <form id="form" class="panel" novalidate>
+      <h2 class="panel-title">Your sky</h2>
+
+      <div class="field">
+        <label for="year">Year</label>
+        <input id="year" name="year" type="number" inputmode="numeric" min="1900" max="2100" step="1" required>
+      </div>
+
+      <div class="field">
+        <label for="place">Place name <span class="opt">optional, printed on the chart</span></label>
+        <input id="place" name="place" type="text" maxlength="60" autocomplete="off" placeholder="Istanbul">
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label for="lat">Latitude</label>
+          <input id="lat" name="lat" type="number" inputmode="decimal" step="0.01" min="-90" max="90" required>
+        </div>
+        <div class="field">
+          <label for="lon">Longitude</label>
+          <input id="lon" name="lon" type="number" inputmode="decimal" step="0.01" min="-180" max="180" required>
+        </div>
+      </div>
+      <p class="hint">Decimal degrees. South and west are negative. The chart works from 30° to 60°, north or south.</p>
+      <button id="locate" type="button" class="btn btn-quiet">Use my location</button>
+
+      <div class="field">
+        <label for="zone">Time zone</label>
+        <input id="zone" name="zone" type="text" list="zones" autocomplete="off" spellcheck="false" required>
+        <datalist id="zones"></datalist>
+        <p class="hint">Times on the chart are local clock time in this zone, with daylight saving.</p>
+      </div>
+
+      <p id="error" class="error" role="alert" hidden></p>
+      <button id="go" type="submit" class="btn btn-main">Make the charts</button>
+      <div id="progress" class="progress" hidden>
+        <div class="bar"><span id="bar"></span></div>
+        <p id="status" class="hint" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <section class="results" aria-label="Charts">
+      <div id="intro" class="intro">
+        <figure class="example">
+          <img src="examples/monthly-2026-istanbul.png" alt="Example chart: twelve arched bands, one per month of 2026, with coloured planet lanes running from east to west" width="1123" height="1587">
+          <figcaption>Example: 2026 for Istanbul. PDFs: <a href="examples/planets-2026-istanbul-monthly.pdf">monthly</a> · <a href="examples/planets-2026-istanbul-biweekly.pdf">every two weeks</a> · <a href="examples/planets-2026-istanbul-weekly.pdf">weekly</a></figcaption>
+        </figure>
+        <div class="howto">
+          <h2>How to read it</h2>
+          <p>Each band is one night. Left to right is the compass direction you face, the same for every band. Every planet has its own lane, Mercury at the bottom and Saturn at the top.</p>
+          <p>A planet's line starts where it comes into view and ends where it leaves. It is lighter in twilight and solid in full darkness, with a white cut at every full hour. The planet symbol marks the best moment to look: its highest point in a dark sky.</p>
+          <p>Times beside a band show when each planet comes into view and leaves. Bold times with an arrow are real rises and sets; grey times are sunset or sunrise.</p>
+          <p>You get three A3 PDFs: one page with the 15th of every month, two pages with the 1st and 15th, and two pages with every week.</p>
+        </div>
+      </div>
+      <div id="cards" class="cards" hidden></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Planet positions are computed in your browser with <a href="https://github.com/cosinekitty/astronomy">Astronomy Engine</a>. Nothing you type is sent anywhere.</p>
+    <p><a href="https://github.com/mdemirer/planets-along-the-ecliptic">Source code</a> · <a href="https://github.com/mdemirer/planets-along-the-ecliptic/blob/main/THIRD_PARTY_NOTICES.md">Credits and licences</a></p>
+  </footer>
+</div>
+
+<div id="pdf-host" aria-hidden="true"></div>
+
+<script src="vendor/astronomy.browser.min.js"></script>
+<script src="vendor/jspdf.umd.min.js"></script>
+<script src="vendor/svg2pdf.umd.min.js"></script>
+<script src="js/astro.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
