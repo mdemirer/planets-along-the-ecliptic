@@ -41,23 +41,6 @@ Example PDFs for Istanbul, 2026: [monthly](examples/planets-2026-istanbul-monthl
 - Each band is one night. Jupiter and Saturn rise about 4 minutes earlier every day, Mercury and Venus change faster.
 - The chart shows direction, not height above the horizon. The Moon is not shown.
 
-## Run it locally
-
-The page uses a Web Worker, so it needs a web server rather than opening the file directly:
-
-```sh
-python3 -m http.server 8000
-# then open http://localhost:8000
-```
-
-## Publish on GitHub Pages
-
-1. Push this folder to a GitHub repository.
-2. In the repository, open **Settings → Pages**, choose **Deploy from a branch**, branch `main`, folder `/ (root)`.
-3. The site appears at `https://<user>.github.io/<repository>/`.
-
-If you use a different user or repository name, also change the links in `index.html` and `SITE_FALLBACK` in `js/app.js` (the address printed on charts made from a local copy).
-
 ## Files
 
 ```
